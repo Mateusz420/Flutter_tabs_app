@@ -13,7 +13,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Register")),
+      appBar: AppBar(title: const Text("Register")),
       body: Body(allSongs, database),
     );
   }
@@ -34,7 +34,10 @@ class _BodyState extends State<Body> {
   TextEditingController controller_confirm_password = TextEditingController();
 
   void clickRegister() async {
-    User user = User(controller_username.text, controller_password.text);
+    User user = User(
+        id: 0,
+        username: controller_username.text,
+        password: controller_password.text);
     insertUser(user, widget.database);
 
     controller_username.clear();
@@ -62,36 +65,36 @@ class _BodyState extends State<Body> {
         alignment: Alignment.centerLeft,
         child: Column(children: [
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                 controller: controller_username,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     icon: Icon(Icons.person),
                     border: OutlineInputBorder(
                         borderSide: BorderSide(width: 5, color: Colors.black)),
                     labelText: "Username:"),
               )),
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                 controller: controller_password,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     icon: Icon(Icons.password),
                     border: OutlineInputBorder(
                         borderSide: BorderSide(width: 5, color: Colors.black)),
                     labelText: "Password:"),
               )),
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                 controller: controller_confirm_password,
                 decoration: InputDecoration(
-                    icon: Icon(Icons.password),
-                    border: OutlineInputBorder(
+                    icon: const Icon(Icons.password),
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(width: 5, color: Colors.black)),
                     labelText: "Confirm Password:",
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.done),
+                      icon: const Icon(Icons.done),
                       onPressed: passwordCheck()
                           ? () => clickRegister()
                           : () => setState(() {
