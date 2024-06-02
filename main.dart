@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+mport 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'homePage.dart';
@@ -9,9 +9,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Song song = Song(0, "Master of Puppets", "Metallica", 8.35);
   final database = openDatabase(join(await getDatabasesPath(), 'Tabs.db'),
-      version: 1, onCreate: ((db, version) {
-    return db.execute(
-        'CREATE TABLE Songs (id INTEGER PRIMARY KEY, name STRING, author STRING, lenght DOUBLE)'); //gotta add creation of the Users table
+      version: 1, onCreate: ((db, version) async {
+    await db.execute(
+        'CREATE TABLE Songs (id INTEGER PRIMARY KEY, name STRING, author STRING, lenght DOUBLE)');
+    await db.execute(
+        'CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username STRING, password STRING)');
   }));
   insertSong(song, database);
   List<Song> allSongs = await songs(database);
