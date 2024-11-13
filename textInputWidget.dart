@@ -17,7 +17,6 @@ class _TextInputWidgetState extends State<TextInputWidget> {
   final controller = TextEditingController();
   List<Song> searchedSongs = [];
 
-  // ???????????? delete this????
   @override
   void dispose() {
     super.dispose();
@@ -29,10 +28,10 @@ class _TextInputWidgetState extends State<TextInputWidget> {
     return TextField(
         controller: controller,
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search),
+            prefixIcon: const Icon(Icons.search),
             labelText: "Search",
             suffixIcon: IconButton(
-              icon: Icon(Icons.check_circle_outline),
+              icon: const Icon(Icons.check_circle_outline),
               splashColor: Colors.blue,
               tooltip: "Confirm",
               onPressed: () => widget.callback(controller.text),

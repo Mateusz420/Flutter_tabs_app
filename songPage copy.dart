@@ -48,10 +48,17 @@ class _SongPageState extends State<SongPage> {
 
   Future<void> loadTabs() async {
     try {
-      final String data = await rootBundle.loadString(widget.songClass.tabData);
-      final Map<String, dynamic> song = json.decode(data);
+      final String data = await rootBundle.loadString('assets/tabs.json');
+      final Map<String, dynamic> jsonResult = json.decode(data);
 
-      if (song['tab'] is Map<String, dynamic>) {
+      final song = jsonResult['songs']?.firstWhere(
+        (song) =>
+            song is Map<String, dynamic> &&
+            song['title'] == widget.songClass.name,
+        orElse: () => null,
+      );
+
+      if (song != null && song['tab'] is Map<String, dynamic>) {
         final Map<String, dynamic> tabs = song['tab'];
 
         setState(() {

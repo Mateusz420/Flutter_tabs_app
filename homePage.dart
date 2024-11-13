@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:tabs/favoritePage.dart';
 import 'songList.dart';
 import 'textInputWidget.dart';
 import 'song.dart';
 import 'loginPage.dart';
 import 'databaseHelper.dart';
+import 'tunerPage.dart';
 
 class HomePage extends StatefulWidget {
   final String name;
@@ -28,12 +30,6 @@ class _HomePageState extends State<HomePage> {
     searchedSongs = List.from(widget.allSongs);
   }
 
-  void newSong(text) {
-    setState(() {
-      widget.allSongs.add(Song(widget.id, text, widget.name));
-    });
-  }
-
   void songSearchUpdate(searchWord) async {
     if (searchWord == "") {
       searchedSongs = await songs(widget.database);
@@ -53,21 +49,37 @@ class _HomePageState extends State<HomePage> {
             builder: (context) => LoginPage(widget.allSongs, widget.database)));
   }
 
+  void tunerClick() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const tunerPage()));
+  }
+
+  void favClick() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => FavoritePage(listItems: widget.allSongs)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tabs"),
+        title: const Text("Tabs"),
         actions: [
           IconButton(
-              //This has to be changed, make this button show the search box in the future
               onPressed: () => setState(() {
-                    TextInputWidget(songSearchUpdate, widget.database);
+                    tunerClick();
                   }),
-              icon: Icon(Icons.search)),
+              icon: const Icon(Icons.music_note_rounded)),
+          IconButton(
+            onPressed: () => favClick(),
+            icon: const Icon(Icons.star),
+            iconSize: 30,
+          ),
           IconButton(
             onPressed: () => loginClick(),
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             iconSize: 30,
           ),
         ],

@@ -38,7 +38,7 @@ class _BodyState extends State<Body> {
         id: 0,
         username: controller_username.text,
         password: controller_password.text);
-    insertUser(user, widget.database);
+    insertUser(user, widget.database as Future<Database>);
 
     controller_username.clear();
     controller_password.clear();
@@ -83,6 +83,8 @@ class _BodyState extends State<Body> {
                     border: OutlineInputBorder(
                         borderSide: BorderSide(width: 5, color: Colors.black)),
                     labelText: "Password:"),
+                obscureText: true,
+                obscuringCharacter: "*",
               )),
           Padding(
               padding: const EdgeInsets.all(10),
@@ -103,6 +105,8 @@ class _BodyState extends State<Body> {
                                 controller_confirm_password.clear();
                               }),
                     )),
+                obscureText: true,
+                obscuringCharacter: "*",
               ))
         ]));
   }

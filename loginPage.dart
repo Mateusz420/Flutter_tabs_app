@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login")),
+      appBar: AppBar(title: const Text("Login")),
       body: Body(allSongs, database),
     );
   }
@@ -23,7 +23,7 @@ class Body extends StatefulWidget {
   final List<Song> allSongs;
   final Database database;
 
-  Body(this.allSongs, this.database);
+  const Body(this.allSongs, this.database, {super.key});
 
   @override
   State<Body> createState() => _BodyState();
@@ -32,8 +32,8 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   String name = "";
   String password = "";
-  TextEditingController controller_username = new TextEditingController();
-  TextEditingController controller_password = new TextEditingController();
+  TextEditingController controller_username = TextEditingController();
+  TextEditingController controller_password = TextEditingController();
 
   void clickLogin(name, password) {
     setState(() {
@@ -64,26 +64,26 @@ class _BodyState extends State<Body> {
         alignment: Alignment.centerLeft,
         child: Column(children: [
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                   controller: controller_username,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     icon: Icon(Icons.person),
                     labelText: "Username:",
                     border: OutlineInputBorder(
                         borderSide: BorderSide(width: 5, color: Colors.black)),
                   ))),
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                 controller: controller_password,
                 decoration: InputDecoration(
-                    icon: Icon(Icons.password),
+                    icon: const Icon(Icons.password),
                     labelText: "Password",
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(width: 5, color: Colors.black)),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.done),
+                      icon: const Icon(Icons.done),
                       onPressed: () => clickLogin(name, password),
                     )),
                 obscureText: true,
@@ -94,7 +94,7 @@ class _BodyState extends State<Body> {
             height: 50,
             color: Colors.amber,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Register",
                 textAlign: TextAlign.center,
               ),

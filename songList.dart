@@ -14,7 +14,11 @@ class SongList extends StatefulWidget {
 class _SongListState extends State<SongList> {
   void songClick(song) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SongPage(song)));
+        context,
+        MaterialPageRoute(
+            builder: (context) => SongPage(
+                  songClass: song,
+                )));
   }
 
   @override
@@ -35,12 +39,12 @@ class _SongListState extends State<SongList> {
             )),
             Row(children: [
               Container(
-                child:
-                    Text(song.favs.toString(), style: TextStyle(fontSize: 20)),
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: Text(song.favs.toString(),
+                    style: const TextStyle(fontSize: 20)),
               ),
               IconButton(
-                icon: Icon(Icons.star),
+                icon: const Icon(Icons.star),
                 onPressed: () => setState(() {
                   song.favorited();
                 }),

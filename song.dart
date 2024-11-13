@@ -2,15 +2,16 @@ class Song {
   int id;
   String name;
   String author;
-  double lenght = 0;
+  double length = 0;
   int favs = 0;
   bool userFav = false;
+  String tabData;
 
-  Song(this.id, this.name, this.author, [this.lenght = 0]);
+  Song(this.id, this.name, this.author, this.tabData, [this.length = 0]);
 
   @override
   String toString() {
-    return 'Song{id: $id, name: $name, author: $author, lenght: $lenght}';
+    return 'Song{id: $id, name: $name, author: $author, length: $length}';
   }
 
   Map<String, dynamic> toMapSong() {
@@ -18,7 +19,8 @@ class Song {
       'id': id,
       'name': name,
       'author': author,
-      'lenght': lenght,
+      'length': length,
+      'tabData': tabData,
     };
   }
 
@@ -26,9 +28,9 @@ class Song {
     userFav = !userFav;
 
     if (userFav) {
-      this.favs += 1;
+      favs += 1;
     } else {
-      this.favs -= 1;
+      favs -= 1;
     }
   }
 }
