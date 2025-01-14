@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'song.dart';
+import 'package:tabs/song.dart';
 
 class TextInputWidget extends StatefulWidget {
   final Function(String) callback;

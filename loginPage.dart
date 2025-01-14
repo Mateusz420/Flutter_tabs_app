@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'homePage.dart';
-import 'song.dart';
+import 'package:tabs/song.dart';
 import 'registerPage.dart';
 
 class LoginPage extends StatelessWidget {

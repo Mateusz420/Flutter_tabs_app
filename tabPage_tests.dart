@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'song.dart';
+import 'package:tabs/song.dart';
 
 class TabPage extends StatefulWidget {
   final Song songClass;

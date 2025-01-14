@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/services.dart' as services;
 
-import 'song.dart';
+import 'package:tabs/song.dart';
 
 class SongPage extends StatefulWidget {
   final Song songClass;

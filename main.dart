@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'homePage.dart';
 import 'databaseHelper.dart';
-import 'song.dart';
+import 'package:tabs/song.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

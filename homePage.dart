@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:tabs/favoritePage.dart';
 import 'songList.dart';
 import 'textInputWidget.dart';
-import 'song.dart';
+import 'package:tabs/song.dart';
 import 'loginPage.dart';
 import 'databaseHelper.dart';
 import 'tunerPage.dart';

@@ -1,5 +1,5 @@
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'song.dart';
+import 'package:tabs/song.dart';
 import 'dart:async';
 
 Future<void> insertSong(Song song, Future<Database> database) async {

@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:tabs/homePage.dart';
 import 'databaseHelper.dart';
 import 'user.dart';
-import 'song.dart';
+import 'package:tabs/song.dart';
 
 class RegisterPage extends StatelessWidget {
   final Database database;
