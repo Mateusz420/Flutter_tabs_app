@@ -18,7 +18,7 @@ class _tunerPageState extends State<tunerPage> {
     while (running) {
       try {
         var response = await http.post(
-          Uri.parse('http://192.168.1.79:39640/start-recording'),
+          Uri.parse('http://192.168.1.87:39640/start-recording'),
         );
 
         if (response.statusCode == 200) {

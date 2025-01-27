@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/services.dart' as services;
 
@@ -28,8 +27,6 @@ class _SongPageState extends State<SongPage> {
   String errorMessage = '';
   bool isLoading = true;
   bool isPlaying = false;
-  String predictedSound = '';
-  bool running = false;
 
   final ScrollController _scrollController = ScrollController();
   Timer? _scrollTimer;
@@ -39,7 +36,6 @@ class _SongPageState extends State<SongPage> {
     super.initState();
     loadTabs();
     setLandscapeMode();
-    startSoundPrediction();
   }
 
   @override
@@ -47,7 +43,6 @@ class _SongPageState extends State<SongPage> {
     resetOrientation();
     _scrollTimer?.cancel();
     _scrollController.dispose();
-    running = false;
     super.dispose();
   }
 
@@ -81,37 +76,6 @@ class _SongPageState extends State<SongPage> {
         errorMessage = 'Failed to load tabs: $e';
         isLoading = false;
       });
-    }
-  }
-
-  Future<void> startSoundPrediction() async {
-    running = true;
-    while (running && mounted) {
-      try {
-        var response = await http.post(
-          Uri.parse('http://192.168.1.87:39640/start-recording'),
-        );
-
-        if (response.statusCode == 200) {
-          var jsonResponse = json.decode(response.body);
-          if (mounted) {
-            setState(() {
-              predictedSound = jsonResponse['predicted_sound'];
-            });
-          }
-        } else if (mounted) {
-          setState(() {
-            predictedSound = 'Error: Unable to predict sound.';
-          });
-        }
-      } catch (e) {
-        if (mounted) {
-          setState(() {
-            predictedSound = 'Error: $e';
-          });
-        }
-      }
-      await Future.delayed(const Duration(seconds: 1));
     }
   }
 
@@ -154,26 +118,6 @@ class _SongPageState extends State<SongPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.all(8.0),
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: Center(
-              child: Text(
-                predictedSound,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
